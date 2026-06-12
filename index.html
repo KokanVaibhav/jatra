@@ -50,7 +50,18 @@
   </div>
 
   <!-- 💻 २. मुख्य गुगल वेब ॲप फॉर्म (Iframe मध्ये) -->
-  <div id="app-content" class="hidden h-full w-full">
+ <div id="app-content" class="hidden h-full w-full flex flex-col">
+    
+    <!-- 🎪 वरची कायम फिक्स राहणारी कडक गॅलरी लिंक पट्टी -->
+    <div class="bg-gradient-to-r from-[#ea580c] to-[#f59e0b] p-2 flex justify-between items-center px-4 shadow-md z-40">
+      <span class="text-xs sm:text-sm font-bold text-white tracking-wide">
+        🚩 श्री जागेवाला बाबा उत्सव २०२६
+      </span>
+      <!-- 📸 गॅलरीकडे जाणारे कडक बटन -->
+      <a href="gallery.html" class="inline-flex items-center gap-1 text-[10px] sm:text-xs font-extrabold text-orange-700 bg-white hover:bg-orange-50 px-2.5 py-1 rounded-full shadow transition-all active:scale-95 animate-pulse">
+        <i class="bi bi-images"></i> गॅलरी पहा ➔
+      </a>
+    </div>
     <!-- 🔴 'src' च्या जागी तुमच्या मुख्य गुगल वेब ॲपची (.../exec) लिंक टाका भाऊ! -->
     <iframe src="https://script.google.com/macros/s/AKfycbxhhdRsqvN8ttqbPukPs0LmueZfr5GfCPk-J2sB8mlj4OohEpvegtvfVkWZdmYk-W7E/exec"></iframe>
   </div>
