@@ -1,7 +1,7 @@
 {
   "name": "श्री जागेवाला बाबा जत्रा २०२६",
   "short_name": "जागेवाला बाबा जत्रा",
-  "description": "सार्वजनिक जेवण वर्गणी व नाव नोंदणी फॉर्म",
+  "description": "नाव नोंदणी फॉर्म",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#fefaf6",
@@ -9,13 +9,13 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/5692/5692134.png",
+      "src": "./assets/icons/logo-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/5692/5692134.png",
+      "src": "./assets/icons/logo-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
