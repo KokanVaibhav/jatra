@@ -1,17 +1,24 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="mr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>श्री जागेवाला बाबा जत्रा २०२६</title>
+  
+  <!-- 🎯 कडक फेव्हिकॉन आयकॉन्स (Favicon Settings) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/splash/splash_jatra.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/splash/splash_jatra.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/splash/splash_jatra.png">
+
   <!-- PWA Manifest Link -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#ea580c">
+  
   <!-- Tailwind CSS & Icons -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/style/css/bootstrap-icons.min.css">
   
-<style>
+  <style>
     iframe { width: 100%; height: 100vh; border: none; }
     body, html { margin: 0; padding: 0; overflow: hidden; height: 100%; background-color: #ea580c; }
     
@@ -26,20 +33,14 @@
 </head>
 <body>
 
-  <!-- 💥 १. कडक डिजिटल स्प्लॅश स्क्रीन (Splash Screen) -->
-  <div id="splash-screen" class="fixed inset-0 bg-gradient-to-br from-[#ea580c] to-[#f59e0b] flex flex-col items-center justify-center z-50 transition-all duration-700">
-    <!-- बाबांचे प्रतीक किंवा आयकॉन -->
-    <div class="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mb-4 animate-bounce shadow-lg">
-      <i class="bi bi-fire text-5xl text-amber-300"></i>
-    </div>
-    <!-- उत्सव नाव -->
-    <h1 class="text-white text-2xl font-extrabold tracking-wider drop-shadow-md text-center px-4">
-      🚩 श्री जागेवाला बाबा जत्रा २०२६
-    </h1>
-    <p class="text-orange-100 text-xs mt-1 tracking-wide font-medium">कोकण वैभव चाळ कमिटी उत्सव ॲप</p>
+  <!-- 💥 १. कडक डिजिटल स्प्लॅश स्क्रीन (आता पूर्णपणे तुमच्या फोटोसह) -->
+  <div id="splash-screen" class="fixed inset-0 full-splash flex flex-col items-center justify-between z-50 transition-all duration-700">
     
-    <!-- मॉडर्न स्पिनर लोडर -->
-    <div class="mt-8 flex items-center gap-2 px-4 py-2 bg-black/10 rounded-full text-white/90 text-xs font-semibold tracking-wide">
+    <!-- वरची मोकळी जागा डिझाईन बॅलन्स करण्यासाठी -->
+    <div></div>
+    
+    <!-- ⚙️ तळाशी फिरणारा मॉडर्न लोडिंग स्पिनर (बॅकग्राउंड ब्लर इफेक्टसह जेणेकरून फोटोवर उठून दिसेल) -->
+    <div class="mb-16 flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-sm rounded-full text-white text-xs font-semibold tracking-wide shadow-lg">
       <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -50,7 +51,7 @@
 
   <!-- 💻 २. मुख्य गुगल वेब ॲप फॉर्म (Iframe मध्ये) -->
   <div id="app-content" class="hidden h-full w-full">
-    <!-- 🔴 महत्त्वाचं: 'src' च्या जागी तुमच्या मुख्य गुगल वेब ॲपची (.../exec) लिंक टाका भाऊ! -->
+    <!-- 🔴 'src' च्या जागी तुमच्या मुख्य गुगल वेब ॲपची (.../exec) लिंक टाका भाऊ! -->
     <iframe src="https://script.google.com/macros/s/AKfycbxhhdRsqvN8ttqbPukPs0LmueZfr5GfCPk-J2sB8mlj4OohEpvegtvfVkWZdmYk-W7E/exec"></iframe>
   </div>
 
@@ -61,7 +62,7 @@
         const splash = document.getElementById('splash-screen');
         const content = document.getElementById('app-content');
         
-        splash.classList.add('opacity-0', 'scale-110');
+        splash.classList.add('opacity-0', 'scale-105');
         content.classList.remove('hidden');
         
         // पूर्णपणे डोममधून काढणे
