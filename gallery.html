@@ -46,53 +46,51 @@
   </div>
 
   <script>
-    // ⚙️ ऑटोमॅटिक फोटो जनरेटर इंजिन
-    document.addEventListener('DOMContentLoaded', () => {
-      const grid = document.getElementById('jatra-gallery-grid');
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('jatra-gallery-grid');
+    
+    // 📝 तुमच्या फोटोंची नावे जशी गिटहबवर आहेत तशी इथे कॉपी-पेस्ट करून टाका भाऊ!
+    const myPhotos = [
+      "FB_IMG_1624158759873.jpg",
+      "FB_IMG_1624158778560.jpg",
+      "jatara 1.jpeg" // स्पेस आणि स्पेलिंग जसे आहे तसेच ठेवा
+    ];
+
+    // लूपद्वारे गॅलरी तयार करणे
+    myPhotos.forEach((photoName) => {
+      const imgSrc = `./assets/gallery/${photoName}`;
+
+      const photoCard = document.createElement('div');
+      photoCard.className = "bg-white rounded-2xl shadow-md border border-orange-100 overflow-hidden group cursor-pointer transform transition-all duration-300 hover:-translate-y-1";
+      photoCard.setAttribute('onclick', `openLightbox('${imgSrc}')`);
       
-      // समजा तुम्ही जास्तीत जास्त ५० फोटो अपलोड करणार आहात (ही संख्या तुम्ही कितीही वाढवू शकता)
-      const totalPossiblePhotos = 50; 
-
-      for (let i = 1; i <= totalPossiblePhotos; i++) {
-        // तुमच्या गिटहबवरील फोटोचा डायनॅमिक पाथ
-        // जर तुमच्या फोटोचे नाव 'jatra (1).jpg' असे असेल तर खालील पाथ वापरा:
-        const imgSrc = `./assets/gallery/jatra (${i}).jpg`;
-
-        // एचटीएमएल ब्लॉक तयार करणे
-        const photoCard = document.createElement('div');
-        photoCard.className = "bg-white rounded-2xl shadow-md border border-orange-100 overflow-hidden group cursor-pointer transform transition-all duration-300 hover:-translate-y-1";
-        photoCard.setAttribute('onclick', `openLightbox('${imgSrc}')`);
-        
-        photoCard.innerHTML = `
-          <div class="aspect-square w-full overflow-hidden bg-gray-100 relative">
-            <img src="${imgSrc}" alt="जत्रा आठवणी" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" onload="this.parentElement.parentElement.classList.remove('hidden')" onerror="this.parentElement.parentElement.remove()">
-            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
-              <i class="bi bi-eye-fill text-white text-2xl"></i>
-            </div>
+      photoCard.innerHTML = `
+        <div class="aspect-square w-full overflow-hidden bg-gray-100 relative">
+          <img src="${imgSrc}" alt="जत्रा आठवणी" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
+          <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
+            <i class="bi bi-eye-fill text-white text-2xl"></i>
           </div>
-        `;
-
-        // सुरुवातीला कार्ड लपवून ठेवणे, जर फोटो गिटहबवर सापडला तरच तो दिसेल
-        photoCard.classList.add('hidden');
-        grid.appendChild(photoCard);
-      }
+        </div>
+      `;
+      grid.appendChild(photoCard);
     });
+  });
 
-    // लाईटबॉक्स फंक्शन्स
-    function openLightbox(imgSrc) {
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImg = document.getElementById('lightbox-img');
-      lightboxImg.src = imgSrc;
-      lightbox.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
+  // लाईटबॉक्स फंक्शन्स
+  function openLightbox(imgSrc) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    lightboxImg.src = imgSrc;
+    lightbox.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
 
-    function closeLightbox() {
-      const lightbox = document.getElementById('lightbox');
-      lightbox.classList.add('hidden');
-      document.body.style.overflow = '';
-    }
-  </script>
+  function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+</script>
 
 </body>
 </html>
