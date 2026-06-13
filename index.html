@@ -179,6 +179,7 @@
     });
 
     // 🚀 गुगल बॅकएंडला (doPost) डायरेक्ट डेटा पाठवणारे नवीन कडक फंक्शन
+    // 🚀 गुगल बॅकएंडला (doPost) डायरेक्ट डेटा पाठवणारे नवीन कडक फंक्शन
     function handleFormSubmit(event) {
       event.preventDefault();
 
@@ -190,53 +191,51 @@
 
       var submitBtn = document.getElementById("submitBtn");
       submitBtn.disabled = true;
-      submitBtn.innerHTML = "<i class='bi bi-arrow-repeat animate-spin'></i> सेव्ह होत आहे...";
+      submitBtn.innerHTML = "<i class='bi bi-arrow-repeat animate-spin'></i> सर्व्हरला जोडत आहे...";
 
-      // तुमच्या गुगल स्क्रिप्टची नवीन मॅक्रो '.../exec' लिंक इथे टाका भाऊ!!
+      // 🚨 तुमच्या गुगल स्क्रिप्टची नवीन डिप्लॉयमेंट '.../exec' लिंक इथे पेस्ट करा भाऊ!
       var googleScriptUrl = "https://script.google.com/macros/s/AKfycbxhhdRsqvN8ttqbPukPs0LmueZfr5GfCPk-J2sB8mlj4OohEpvegtvfVkWZdmYk-W7E/exec"; 
 
-      // तुमच्या मूळ फंक्शनच्या नावाप्रमाणे अचूक डेटा मॅपिंग
-      var payload = {
-        fullName: document.getElementById("fullName").value.trim(),
-        buildingName: document.getElementById("buildingName").value,
-        userType: document.getElementById("userType").value,
-        referenceName: document.getElementById("referenceName").value.trim(),
-        mobileNumber: mob,
-        foodChoice: document.getElementById("foodChoice").value,
-        amount: 200, // तुमच्या बॅकएंड नुसार फिक्स रक्कम
-        quantity: 1  // तुमच्या बॅकएंड नुसार फिक्स नग
-      };
+      // ⚡ गुगल बॅकएंड सहज वाचू शकेलं अशा 'Form Data' स्वरूपात डेटा तयार करणे
+      var formData = new URLSearchParams();
+      formData.append("fullName", document.getElementById("fullName").value.trim());
+      formData.append("mobileNumber", mob);
+      formData.append("buildingName", document.getElementById("buildingName").value);
+      formData.append("userType", document.getElementById("userType").value);
+      formData.append("referenceName", document.getElementById("referenceName").value.trim());
+      formData.append("foodChoice", document.getElementById("foodChoice").value);
+      formData.append("amount", 200);  // फिक्स रक्कम
+      formData.append("quantity", 1);  // फिक्स नग
 
-      // ⚡ AJAX Fetch POST मॅजिक (नो आयफ्रेम!)
+      // 🚀 प्युअर AJAX Fetch (नो-कोर्सची झंझट नाही!)
       fetch(googleScriptUrl, {
         method: "POST",
-        mode: "no-cors", // गुगल सर्व्हर सिक्युरिटीसाठी
-        cache: "no-cache",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+        body: formData // फॉर्म डेटा डायरेक्ट पास करणे
       })
-      .then(() => {
-        // 'no-cors' मुळे सक्सेस रिस्पॉन्स डायरेक्ट वाचता येत नाही, 
-        // पण डेटा तुमच्या आधीच्या लॉजिकनुसार डुप्लिकेशन चेक करून सुरक्षित शीटमध्ये सेव्ह होतो!
-        Swal.fire({ 
-          title: 'प्रक्रिया पूर्ण!', 
-          text: 'तुमची नोंदणी सर्व्हरकडे पाठवली आहे. जर हा मोबाईल नंबर नवीन असेल तर नोंद यशस्वी झाली आहे, कृपया शीट किंवा ॲडमिन पॅनल तपासा भाऊ!', 
-          icon: 'success', 
-          confirmButtonColor: '#ea580c' 
-        });
-
-        // फॉर्म मूळ पोझिशनला रीसेट करणे
-        document.getElementById("publicJatraForm").reset();
-        document.getElementById("buildingName").value = "Kokan Vaibhav";
-        document.getElementById("userType").value = "Owner";
-        document.getElementById("foodChoice").value = "Mutton";
-
+      .then(function(res) {
+        return res.json(); // गुगल स्क्रिप्टकडून आलेला सक्सेस/एरर रिस्पॉन्स पकडणे
+      })
+      .then(function(res) {
         submitBtn.disabled = false;
         submitBtn.innerHTML = "<i class='bi bi-send-check-fill'></i> नोंदणी सुरक्षित सेव्ह करा";
+
+        if (res.success) {
+          // 🚩 जर एन्ट्री नवीन असेल आणि शीटमध्ये सक्सेसफुली पडली तर!
+          Swal.fire({ title: 'यशस्वी!', text: res.message, icon: 'success', confirmButtonColor: '#ea580c' });
+
+          // फॉर्म पूर्ण रीसेट करणे
+          document.getElementById("publicJatraForm").reset();
+          document.getElementById("buildingName").value = "Kokan Vaibhav";
+          document.getElementById("userType").value = "Owner";
+          document.getElementById("foodChoice").value = "Mutton";
+        } else {
+          // 🚨 जर मोबाईल नंबर आधीच नोंदणीकृत असेल तर गुगल स्क्रिप्टने पाठवलेला कडक ब्लॉक मेसेज दाखवणे!
+          Swal.fire({ title: 'क्षमस्व भाऊ!', text: res.message, icon: 'error', confirmButtonColor: '#dc2626' });
+        }
       })
       .catch(error => {
         console.error("Error:", error);
-        Swal.fire({ title: 'सर्व्हर त्रुटी!', text: 'नेटवर्क अडचण आली आहे, पुन्हा प्रयत्न करा.', icon: 'error', confirmButtonColor: '#dc2626' });
+        Swal.fire({ title: 'सर्व्हर त्रुटी!', text: 'नेटवर्क अडचण आली आहे किंवा स्क्रिप्ट लिंक चुकली आहे, पुन्हा प्रयत्न करा.', icon: 'error', confirmButtonColor: '#dc2626' });
         submitBtn.disabled = false;
         submitBtn.innerHTML = "<i class='bi bi-send-check-fill'></i> नोंदणी सुरक्षित सेव्ह करा";
       });
