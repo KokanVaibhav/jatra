@@ -14,16 +14,25 @@
 </head>
 <body class="bg-[#fefaf6] min-h-screen pb-10">
 
-  <!-- 🎪 प्रीमियम हेडर -->
+  <!-- 🎪 प्रीमियम हेडर (दोन्ही बाजूला नेव्हिगेशन बटन्ससह) -->
   <div class="bg-gradient-to-r from-[#ea580c] to-[#f59e0b] p-4 text-center text-white shadow-md sticky top-0 z-40">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-      <a href="index.html" class="flex items-center justify-center w-9 h-9 bg-white/20 rounded-full hover:bg-white/30 text-white transition-all">
+    <div class="max-w-6xl mx-auto flex justify-between items-center px-2">
+      
+      <!-- ⬅️ मागे जाण्यासाठी बॅक बटन -->
+      <a href="index.html" class="flex items-center justify-center w-9 h-9 bg-white/20 rounded-full hover:bg-white/30 text-white transition-all shadow-sm" title="मागे जा">
         <i class="bi bi-arrow-left text-lg"></i>
       </a>
-      <h2 class="text-lg sm:text-xl font-bold tracking-wide flex items-center gap-2">
-        📸 जत्रा उत्सव - आठवणींची गॅलरी
+      
+      <!-- 👑 मुख्य शीर्षक -->
+      <h2 class="text-sm sm:text-lg font-bold tracking-wide flex items-center gap-1.5">
+        📸 आठवणींची गॅलरी
       </h2>
-      <div class="w-9"></div>
+      
+      <!-- 📝 मुख्य फॉर्मवर जाण्यासाठी कडक नवीन बटन -->
+      <a href="index.html" class="inline-flex items-center gap-1 text-[11px] sm:text-xs font-extrabold text-orange-700 bg-white hover:bg-orange-50 px-3 py-1.5 rounded-full shadow-md transition-all active:scale-95">
+        <i class="bi bi-pencil-square"></i> नोंदणी करा
+      </a>
+      
     </div>
   </div>
 
@@ -31,7 +40,7 @@
   <div class="max-w-6xl mx-auto px-4 mt-6">
     <p class="text-center text-gray-500 text-xs sm:text-sm mb-6">🚩 श्री जागेवाला बाबा जत्रेच्या मागील वर्षांतील काही सुवर्ण क्षण आणि आठवणी</p>
     
-    <!-- ⚡ हा मुख्य ग्रिड बॉक्स आहे, याच्या आत कोड आपोआप फोटो भरेल -->
+    <!-- ⚡ हा मुख्य ग्रिड बॉक्स आहे, याच्या आत कोड आपोआप सर्व फोटो भरेल -->
     <div id="jatra-gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
       <!-- फोटो जावास्क्रिप्ट लूपद्वारे ऑटोमॅटिक इथे जनरेट होतील -->
     </div>
@@ -42,41 +51,48 @@
     <button class="absolute top-4 right-4 text-white text-3xl hover:text-gray-300">
       <i class="bi bi-x-circle-fill"></i>
     </button>
-    <img id="lightbox-img" src="" alt="मोठा फोटो" class="max-w-full max-h-[85vh] rounded-xl object-contain shadow-2xl">
+    <img id="lightbox-img" src="" alt="मोठा फोटो" class="max-w-full max-h-[85vh] rounded-xl object-contain shadow-2xl🚀">
   </div>
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
     const grid = document.getElementById('jatra-gallery-grid');
     
-    // 📝 तुमच्या फोटोंची नावे जशी गिटहबवर आहेत तशी इथे कॉपी-पेस्ट करून टाका भाऊ!
-    const myPhotos = [
-      "FB_IMG_1624158759873.jpg",
-      "FB_IMG_1624158778560.jpg",
-      "jatara 1.jpeg" // स्पेस आणि स्पेलिंग जसे आहे तसेच ठेवा
-    ];
+    // ⚙️ तुम्ही जास्तीत जास्त १०० फोटो अपलोड करू शकता. संख्या हवी तर अजून वाढवा भाऊ!
+    const maxPhotosCount = 100; 
 
-    // लूपद्वारे गॅलरी तयार करणे
-    myPhotos.forEach((photoName) => {
-      const imgSrc = `./assets/gallery/${photoName}`;
+    for (let i = 1; i <= maxPhotosCount; i++) {
+      // तुम्ही सांगितल्याप्रमाणे 'jatra 1.jpeg', 'jatra 2.jpeg' हा पॅटर्न अचूक पकडला आहे
+      // (टीप: गिटहबवर फाईलचे एक्सटेंशन .jpeg किंवा .jpg जे असेल ते खालीलप्रमाणे मॅच होईल)
+      const imgSrc = `./assets/gallery/jatra ${i}.jpeg`;
 
       const photoCard = document.createElement('div');
-      photoCard.className = "bg-white rounded-2xl shadow-md border border-orange-100 overflow-hidden group cursor-pointer transform transition-all duration-300 hover:-translate-y-1";
+      photoCard.className = "bg-white rounded-2xl shadow-md border border-orange-100 overflow-hidden group cursor-pointer transform transition-all duration-300 hover:-translate-y-1 hidden"; // सुरुवातीला हिडन राहील
       photoCard.setAttribute('onclick', `openLightbox('${imgSrc}')`);
       
       photoCard.innerHTML = `
         <div class="aspect-square w-full overflow-hidden bg-gray-100 relative">
-          <img src="${imgSrc}" alt="जत्रा आठवणी" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500">
+          <img src="${imgSrc}" alt="जत्रा आठवणी" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" onload="this.parentElement.parentElement.classList.remove('hidden')" onerror="checkAlternativeExtension(this, ${i})">
           <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
             <i class="bi bi-eye-fill text-white text-2xl"></i>
           </div>
         </div>
       `;
       grid.appendChild(photoCard);
-    });
+    }
   });
 
-  // लाईटबॉक्स फंक्शन्स
+  // 🔄 जर काही फोटो .jpeg ऐवजी .jpg फॉरमॅटमध्ये असतील तर हा फंक्शन सेफ्टी म्हणून काम करेल!
+  function checkAlternativeExtension(imgElement, index) {
+    if (imgElement.src.indexOf('.jpeg') !== -1) {
+      imgElement.src = `./assets/gallery/jatra ${index}.jpg`;
+    } else {
+      // जर दोन्ही फॉरमॅटमध्ये फोटो सापडला नाही, तर तो रिकामा बॉक्स गॅलरीतून पूर्णपणे गायब होईल!
+      imgElement.parentElement.parentElement.remove();
+    }
+  }
+
+  // लाईटबॉक्स फंक्शन्स (फोटो पॉप-अप)
   function openLightbox(imgSrc) {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
@@ -85,6 +101,7 @@
     document.body.style.overflow = 'hidden';
   }
 
+  // लाईटबॉक्स बंद करणे
   function closeLightbox() {
     const lightbox = document.getElementById('lightbox');
     lightbox.classList.add('hidden');
