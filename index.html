@@ -1,94 +1,251 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="mr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>श्री जागेवाला बाबा जत्रा २०२६</title>
   
-  <!-- 🎯 कडक फेव्हिकॉन आयकॉन्स (Favicon Settings) -->
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/splash/splash_jatra.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./assets/splash/splash_jatra.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon.png">
-   <link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/favicon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="./assets/splash/splash_jatra.png">
-
-  <!-- PWA Manifest Link -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#ea580c">
-  
-  <!-- Tailwind CSS & Icons -->
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/style/css/bootstrap-icons.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
-    iframe { width: 100%; height: 100vh; border: none; }
-    body, html { margin: 0; padding: 0; overflow: hidden; height: 100%; background-color: #ea580c; }
-    
-    /* 🖼️ तुमच्या नवीन assets फोल्डरमधील फुल स्क्रीन बॅकग्राउंड फोटो */
+    body { font-family: 'Poppins', sans-serif; background-color: #fefaf6; }
     .full-splash {
       background-image: url('./assets/splash/splash_jatra.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      background-size: cover; background-position: center; background-repeat: no-repeat;
     }
   </style>
 </head>
-<body>
+<body class="bg-[#fefaf6] min-h-screen flex items-center justify-center p-2 sm:p-4">
 
-  <!-- 💥 १. कडक डिजिटल स्प्लॅश स्क्रीन (आता पूर्णपणे तुमच्या फोटोसह) -->
   <div id="splash-screen" class="fixed inset-0 full-splash flex flex-col items-center justify-between z-50 transition-all duration-700">
-    
-    <!-- वरची मोकळी जागा डिझाईन बॅलन्स करण्यासाठी -->
     <div></div>
-    
-    <!-- ⚙️ तळाशी फिरणारा मॉडर्न लोडिंग स्पिनर (बॅकग्राउंड ब्लर इफेक्टसह जेणेकरून फोटोवर उठून दिसेल) -->
-<div class="mb-16 flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-sm rounded-full text-white text-xs font-semibold tracking-wide shadow-lg">
-  
-  <img src="./assets/splash/splash_jatra.png" alt="Loading" 
-       class="animate-spin h-5 w-5 rounded-full object-cover border border-white/50">
-  
-  डिजिटल फॉर्म लोड होत आहे...
-</div>
+    <div class="mb-16 flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-sm rounded-full text-white text-xs font-semibold tracking-wide shadow-lg">
+      <img src="./assets/splash/splash_jatra.png" alt="Loading" class="animate-pulse h-5 w-5 rounded-full object-cover">
+      डिजिटल फॉर्म लोड होत आहे...
+    </div>
   </div>
 
-  <!-- 💻 २. मुख्य गुगल वेब ॲप फॉर्म (Iframe मध्ये) -->
- <div id="app-content" class="hidden h-full w-full flex flex-col">
+  <div id="app-content" class="hidden w-full max-w-xl bg-white rounded-2xl shadow-xl border border-orange-100 overflow-hidden my-2 animate-fade-in">
     
-    <!-- 🎪 वरची कायम फिक्स राहणारी कडक गॅलरी लिंक पट्टी -->
-    <div class="bg-gradient-to-r from-[#ea580c] to-[#f59e0b] p-2 flex justify-between items-center px-4 shadow-md z-40">
-      <span class="text-xs sm:text-sm font-bold text-white tracking-wide">
-        🚩 श्री जागेवाला बाबा उत्सव २०२६
-      </span>
-      <!-- 📸 गॅलरीकडे जाणारे कडक बटन -->
-      <a href="gallery.html" class="inline-flex items-center gap-1 text-[10px] sm:text-xs font-extrabold text-orange-700 bg-white hover:bg-orange-50 px-2.5 py-1 rounded-full shadow transition-all active:scale-95 animate-pulse">
-        <i class="bi bi-images"></i> गॅलरी पहा ➔
+    <div class="bg-gradient-to-r from-[#ea580c] to-[#f59e0b] p-5 text-center text-white relative flex flex-col sm:flex-row items-center justify-between gap-3 px-6">
+      <div class="text-center sm:text-left">
+        <h2 class="text-xl sm:text-2xl font-bold tracking-wide flex items-center justify-center sm:justify-start gap-2">
+          🚩 श्री जागेवाला बाबा जत्रा उत्सव २०२६
+        </h2>
+        <p class="text-orange-100 text-xs mt-0.5 font-medium">नाव नोंदणी फॉर्म</p>
+      </div>
+      
+      <a href="gallery.html" class="inline-flex items-center gap-1.5 text-[11px] font-extrabold text-orange-700 bg-white hover:bg-orange-50 px-3 py-1.5 rounded-full shadow-md transition-all active:scale-95 animate-pulse">
+        <i class="bi bi-images"></i> जुन्या आठवणी (गॅलरी) ➔
       </a>
     </div>
-    <!-- 🔴 'src' च्या जागी तुमच्या मुख्य गुगल वेब ॲपची (.../exec) लिंक टाका भाऊ! -->
-    <iframe src="https://script.google.com/macros/s/AKfycbxhhdRsqvN8ttqbPukPs0LmueZfr5GfCPk-J2sB8mlj4OohEpvegtvfVkWZdmYk-W7E/exec"></iframe>
+
+    <div class="p-3 bg-orange-50/50 border-b border-orange-100 space-y-2 text-xs text-gray-700">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div class="bg-red-50 border-l-4 border-red-500 p-2 rounded-r-lg">
+          <b class="text-red-700 block"><i class="bi bi-clock-fill mr-1"></i>अंतिम मुदत:</b>
+          शुक्रवार, ३ जुलै २०२६ रात्री १०:०० वाजेपर्यंत.
+        </div>
+        <div class="bg-amber-50 border-l-4 border-amber-500 p-2 rounded-r-lg">
+          <b class="text-amber-800 block"><i class="bi bi-cash-coin mr-1"></i>वर्गणी:</b>
+          <b>₹२००/- (फक्त रोख - Cash Only).</b>
+        </div>
+      </div>
+
+      <div class="bg-white p-2 rounded-xl border border-orange-100 shadow-sm">
+        <span class="font-bold text-orange-800 block mb-1 text-[11px]"><i class="bi bi-people-fill mr-1"></i>वर्गणी खालील प्रतिनिधींकडे जमा करावी:</span>
+        <div class="text-[11px] text-gray-600 leading-relaxed">
+          <b>तळ मजला:</b> हेमंत बारगोडे • <b>१ ला:</b> आदित्य परब • <b>२ रा:</b> राजेश पवार (विकी) • <b>३ रा:</b> अमोल शिंदे <br>
+          <b>हसन बिल्डिंग:</b> ऋषी मोरे • <b>आडवी चाळ:</b> प्रमोद सावंत
+        </div>
+      </div>
+    </div>
+
+    <div class="p-4 sm:p-5 bg-white">
+      <form id="publicJatraForm" class="space-y-4" onsubmit="handleFormSubmit(event)">
+        
+        <div>
+          <label class="block text-gray-700 text-xs font-bold mb-1">माणसाचे संपूर्ण नाव <span class="text-red-500">*</span></label>
+          <input type="text" id="fullName" placeholder="उदा. रमेश तुकाराम कदम" required
+            class="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm bg-gray-50">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-gray-700 text-xs font-bold mb-1">बिल्डिंग / रहिवासी <span class="text-red-500">*</span></label>
+            <select id="buildingName" required
+              class="w-full px-2 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm bg-gray-50 text-gray-700 cursor-pointer">
+              <option value="Kokan Vaibhav" selected>Kokan Vaibhav</option>
+              <option value="Hasan Building">Hasan Building</option>
+              <option value="IHJC">Aadavi Chawl C</option>
+              <option value="Outside">Outside (बाहेरचे व्यक्ती)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-gray-700 text-xs font-bold mb-1">युझर प्रकार <span class="text-red-500">*</span></label>
+            <select id="userType" required
+              class="w-full px-2 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm bg-gray-50 text-gray-700 cursor-pointer">
+              <option value="Owner" selected>Owner (मालक)</option>
+              <option value="Tenant">Tenant (भाडेकरू)</option>
+              <option value="Ex-Resident">Ex-Resident (रूम विकलेले)</option>
+              <option value="Ex-Tenant">Ex-Tenant (माजी भाडेकरू)</option>
+              <option value="Guest">Guest (पाहुणे)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-gray-700 text-xs font-bold mb-1">कोणाचा संदर्भ (Ref / Room No)</label>
+            <input type="text" id="referenceName" placeholder="उदा. Flat 101"
+              class="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm bg-gray-50">
+          </div>
+          <div>
+            <label class="block text-gray-700 text-xs font-bold mb-1">मोबाईल नंबर (WhatsApp) <span class="text-red-500">*</span></label>
+            <input type="tel" id="mobileNumber" placeholder="10 अंकी नंबर टाका" maxlength="10" required
+              oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+              class="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm bg-gray-50">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-gray-700 text-xs font-bold mb-1">वाटा निवड <span class="text-red-500">*</span></label>
+          <select id="foodChoice" required
+            class="w-full px-3 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm bg-orange-50/50 text-gray-800 font-semibold cursor-pointer">
+            <option value="Mutton" selected>Mutton 🥩</option>
+            <option value="Chicken">Chicken 🍗</option>
+          </select>
+          <p class="text-[10px] text-gray-400 mt-1">* नियमानुसार प्रति कुटुंब १ वाटा (₹२००) दिला जाईल.</p>
+        </div>
+
+        <div class="bg-[#fff7ed] border border-orange-200 rounded-2xl p-4 shadow-sm transition-all">
+          <div class="flex justify-between items-center">
+            <span class="text-gray-700 text-sm font-bold">एकूण जमा करायची वर्गणी:</span>
+            <span class="text-2xl font-extrabold text-[#ea580c]">₹२००</span>
+          </div>
+          
+          <div class="mt-2.5 pt-2 border-t border-orange-100/70 text-[11px] text-gray-600 leading-normal">
+            <span class="text-red-600 font-bold block mb-0.5">
+              <i class="bi bi-exclamation-octagon-fill mr-0.5"></i> महत्त्वाचे (Cash Only):
+            </span>
+            सर्व भाविकांनी आपली वर्गणी वरील प्रतिनिधींकडे <b class="text-red-600">रोख (Cash Only)</b> स्वरूपातच जमा करावी. G-Pay, PhonePe, UPI किंवा कोकण वैभवच्या थेट बँक खात्यात पाठविलेली वर्गणी ग्राह्य धरली जाणार नाही!
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" id="submitBtn"
+            class="w-full bg-[#ea580c] hover:bg-[#c2410c] text-white font-bold py-2.5 px-4 rounded-xl text-sm shadow-md transition-all flex items-center justify-center gap-2 transform active:scale-95">
+            <i class="bi bi-send-check-fill"></i> नोंदणी सुरक्षित सेव्ह करा
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="p-3 bg-gray-50 border-t border-gray-100 text-[11px] text-gray-500 space-y-1">
+      <p>• <b>नवसाचा बकरा:</b> ठरविले असल्यास कृपया <b>श्री. प्रशांत कदम</b> यांच्याशी संपर्क साधावा.</p>
+      <p>• नवसाचा कोंबडा किंवा बकरा जत्रेसाठीच अर्पण करावा, तो घरी घेऊन जाणे मान्य नाही.</p>
+      <p>• वैयक्तिक राखण जत्रेनंतर दुसऱ्या दिवशी पूर्ण करावी. प्रसाद घेण्यासाठी किमान एक व्यक्ती उपस्थित असावी.</p>
+      
+      <div class="pt-2 mt-2 border-t border-gray-200 text-center text-[10px]">
+        <b>📞 संपर्क:</b> प्रशांत कदम • प्रसाद आईर • राजेश ज. पवार (विकी) • संदेश महाडिक
+        <p class="font-bold text-orange-600 mt-0.5 text-xs">कोकण वैभव चाळ कमिटी</p>
+      </div>
+    </div>
+
+    <div class="bg-gray-900 py-2.5 text-center text-gray-400 text-[9px] font-medium">
+      Developed by Sandesh Mahadik | Kokan Vaibhav Digital Society App
+    </div>
+
   </div>
 
   <script>
-    // ⏰ ३ सेकंदानंतर स्प्लॅश स्क्रीन गायब करून फॉर्म दाखवणे
+    // ⏰ ३ सेकंदानंतर स्प्लॅश स्क्रीन गायब करणे
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         const splash = document.getElementById('splash-screen');
         const content = document.getElementById('app-content');
-        
         splash.classList.add('opacity-0', 'scale-105');
         content.classList.remove('hidden');
-        
-        // पूर्णपणे डोममधून काढणे
         setTimeout(() => splash.remove(), 700);
-      }, 3000); // ३००० मिलिसेकंद = ३ सेकंद स्प्लॅश स्क्रीन दिसेल
+      }, 3000);
     });
 
-    // 📱 PWA सर्व्हिस वर्कर रजिस्ट्रेशन
+    // 🚀 गुगल बॅकएंडला (doPost) डायरेक्ट डेटा पाठवणारे नवीन कडक फंक्शन
+    function handleFormSubmit(event) {
+      event.preventDefault();
+
+      var mob = document.getElementById("mobileNumber").value.trim();
+      if (mob.length !== 10) {
+        Swal.fire({ title: 'चुकीचा नंबर!', text: 'कृपया अचूक १० अंकी मोबाईल नंबर टाका भाऊ!', icon: 'warning', confirmButtonColor: '#ea580c' });
+        return;
+      }
+
+      var submitBtn = document.getElementById("submitBtn");
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = "<i class='bi bi-arrow-repeat animate-spin'></i> सेव्ह होत आहे...";
+
+      // तुमच्या गुगल स्क्रिप्टची नवीन मॅक्रो '.../exec' लिंक इथे टाका भाऊ!!
+      var googleScriptUrl = "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE"; 
+
+      // तुमच्या मूळ फंक्शनच्या नावाप्रमाणे अचूक डेटा मॅपिंग
+      var payload = {
+        fullName: document.getElementById("fullName").value.trim(),
+        buildingName: document.getElementById("buildingName").value,
+        userType: document.getElementById("userType").value,
+        referenceName: document.getElementById("referenceName").value.trim(),
+        mobileNumber: mob,
+        foodChoice: document.getElementById("foodChoice").value,
+        amount: 200, // तुमच्या बॅकएंड नुसार फिक्स रक्कम
+        quantity: 1  // तुमच्या बॅकएंड नुसार फिक्स नग
+      };
+
+      // ⚡ AJAX Fetch POST मॅजिक (नो आयफ्रेम!)
+      fetch(googleScriptUrl, {
+        method: "POST",
+        mode: "no-cors", // गुगल सर्व्हर सिक्युरिटीसाठी
+        cache: "no-cache",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+      .then(() => {
+        // 'no-cors' मुळे सक्सेस रिस्पॉन्स डायरेक्ट वाचता येत नाही, 
+        // पण डेटा तुमच्या आधीच्या लॉजिकनुसार डुप्लिकेशन चेक करून सुरक्षित शीटमध्ये सेव्ह होतो!
+        Swal.fire({ 
+          title: 'प्रक्रिया पूर्ण!', 
+          text: 'तुमची नोंदणी सर्व्हरकडे पाठवली आहे. जर हा मोबाईल नंबर नवीन असेल तर नोंद यशस्वी झाली आहे, कृपया शीट किंवा ॲडमिन पॅनल तपासा भाऊ!', 
+          icon: 'success', 
+          confirmButtonColor: '#ea580c' 
+        });
+
+        // फॉर्म मूळ पोझिशनला रीसेट करणे
+        document.getElementById("publicJatraForm").reset();
+        document.getElementById("buildingName").value = "Kokan Vaibhav";
+        document.getElementById("userType").value = "Owner";
+        document.getElementById("foodChoice").value = "Mutton";
+
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = "<i class='bi bi-send-check-fill'></i> नोंदणी सुरक्षित सेव्ह करा";
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        Swal.fire({ title: 'सर्व्हर त्रुटी!', text: 'नेटवर्क अडचण आली आहे, पुन्हा प्रयत्न करा.', icon: 'error', confirmButtonColor: '#dc2626' });
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = "<i class='bi bi-send-check-fill'></i> नोंदणी सुरक्षित सेव्ह करा";
+      });
+    }
+
+    // PWA सर्व्हिस वर्कर
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js')
-          .then(reg => console.log('PWA Service Worker Registered Successfully!'))
-          .catch(err => console.log('Service Worker Registration Failed:', err));
+        navigator.serviceWorker.register('sw.js').catch(err => console.log('PWA Error', err));
       });
     }
   </script>
